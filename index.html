@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hex to Decimal Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hex to Decimal Converter</h2>
+        <input type="text" id="hexInput" placeholder="Enter Hexadecimal value">
+        <button onclick="convertHex()">Convert</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convertHex() {
+            const input = document.getElementById('hexInput').value;
+            let sanitizedInput = input.replace(/\s+/g, '').toLowerCase();
+            if (sanitizedInput.length === 16) {
+                sanitizedInput = sanitizedInput.match(/.{8}/g).reverse().join('');
+            } else {
+                document.getElementById('result').innerText = "Invalid input length.";
+                return;
+            }
+            console.log(hexTodec(sanitizedInput));
+            
+            const decimalValue = parseInt(sanitizedInput, 16);
+            document.getElementById('result').innerText = `Decimal Value: ${decimalValue}`;
+        }
+
+        function hexTodec(hex){
+        return parseInt(String(hex),16);
+    }
+    </script>
+</body>
+</html>
